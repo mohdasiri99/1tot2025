@@ -261,18 +261,27 @@
         .print-btn:hover { background-color: #1d4ed8; }
 
         @media print {
+            @page {
+                size: landscape;
+                margin: 0; /* Removes default browser margins/headers/footers */
+            }
             body {
                 background: none;
                 padding: 0;
+                margin: 0;
+                -webkit-print-color-adjust: exact;
             }
             .slide-container {
-                width: 100%;
-                height: 100vh;
+                width: 100vw; /* Full Viewport Width */
+                height: 100vh; /* Full Viewport Height */
                 box-shadow: none;
                 border: none;
                 margin: 0;
                 page-break-after: always;
+                page-break-inside: avoid;
                 border-radius: 0;
+                overflow: hidden; /* Prevent spillover */
+                transform: scale(1); /* Ensure scale is reset */
             }
             .print-btn { display: none; }
             .title-slide { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
